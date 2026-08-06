@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../enums/role.enum';
+import { OneToOne } from 'typeorm';
+import { Profile } from '../../profile/entities/profile.entity';
 
 @Entity('users')
 export class User {
@@ -45,4 +47,8 @@ fullName: string;
 
   @UpdateDateColumn()
   updatedAt: Date;
+    // profile: any;
+
+    @OneToOne(() => Profile, (profile) => profile.user)
+profile: Profile;
 }
